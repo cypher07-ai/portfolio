@@ -1,0 +1,1135 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayan Kaushik — Portfolio | VIT Vellore</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050810;
+      --surface: #0d1225;
+      --card: #141d35;
+      --text: #e8eef8;
+      --text-secondary: #9ca3b8;
+      --primary: #00d4ff;
+      --accent: #ffd700;
+      --accent-purple: #b24eff;
+    }
+
+    .app-root {
+      min-height: 100%;
+      width: 100%;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, var(--bg) 0%, #0a0f1a 50%, var(--surface) 100%);
+      color: var(--text);
+    }
+
+    /* Gradient Mesh Backgrounds */
+    .gradient-mesh {
+      background: 
+        radial-gradient(circle at 15% 30%, rgba(0, 212, 255, 0.12) 0%, transparent 55%),
+        radial-gradient(circle at 85% 75%, rgba(178, 78, 255, 0.1) 0%, transparent 55%),
+        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.04) 0%, transparent 60%);
+    }
+
+    .glow-text {
+      background: linear-gradient(120deg, var(--primary) 0%, #6be5ff 40%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.35));
+    }
+
+    .glow-purple {
+      background: linear-gradient(120deg, #d38aff 0%, var(--accent-purple) 60%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Float Animations */
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-16px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.25); }
+      50% { box-shadow: 0 0 45px rgba(0, 212, 255, 0.55); }
+    }
+
+    .pulse-glow {
+      animation: pulse-glow 3.5s ease-in-out infinite;
+    }
+
+    /* Wave divider with animation */
+    .wave-divider {
+      position: relative;
+      overflow: hidden;
+      height: 80px;
+      background: var(--surface);
+    }
+
+    .wave-divider::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 80px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40 Q300 10 600 40 T1200 40 L1200 80 L0 80 Z' fill='%230d1225' opacity='0.6'/%3E%3Cpath d='M0 50 Q300 20 600 50 T1200 50 L1200 80 L0 80 Z' fill='%23141d35' opacity='0.8'/%3E%3C/svg%3E") repeat-x;
+      animation: waveFlow 16s linear infinite;
+    }
+
+    @keyframes waveFlow {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Premium cards */
+    .premium-card {
+      background: linear-gradient(135deg, rgba(20, 29, 53, 0.65), rgba(13, 18, 37, 0.45));
+      border: 1px solid rgba(0, 212, 255, 0.12);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .premium-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 212, 255, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.12);
+    }
+
+    /* Project Cards with Highlight Bar */
+    .project-card {
+      background: linear-gradient(135deg, rgba(20, 29, 53, 0.85), rgba(13, 18, 37, 0.6));
+      border: 1px solid rgba(0, 212, 255, 0.12);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent-purple), transparent);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 212, 255, 0.4);
+      box-shadow: 0 25px 60px rgba(0, 212, 255, 0.18);
+    }
+
+    /* Timeline styling */
+    .timeline-container {
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 7px;
+      top: 10px;
+      bottom: 20px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--primary), var(--accent-purple), rgba(178, 78, 255, 0.1));
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -15px;
+      top: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 16px rgba(0, 212, 255, 0.5);
+    }
+
+    .timeline-item {
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    /* Skill and achievement tags */
+    .skill-tag {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(178, 78, 255, 0.06));
+      border: 1px solid rgba(0, 212, 255, 0.22);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-family: 'JetBrains Mono', monospace;
+      color: #d1e4ff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skill-tag:hover {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.22), rgba(178, 78, 255, 0.15));
+      border-color: rgba(0, 212, 255, 0.5);
+      box-shadow: 0 0 16px rgba(0, 212, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Easter eggs */
+    .easter-egg {
+      display: inline-block;
+      opacity: 0.35;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .easter-egg:hover {
+      opacity: 1;
+      transform: scale(1.25) rotate(10deg);
+    }
+
+    /* Fade-in animations */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Profile Circle */
+    .profile-circle {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(178, 78, 255, 0.15));
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--primary);
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+      position: relative;
+      letter-spacing: -2px;
+      user-select: none;
+    }
+
+    .profile-circle::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--accent-purple), var(--accent), var(--primary));
+      opacity: 0.35;
+      animation: spin 9s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Navigation */
+    nav {
+      backdrop-filter: blur(14px);
+      background: rgba(5, 8, 16, 0.78);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.12);
+    }
+
+    .nav-logo {
+      background: linear-gradient(120deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* CTA buttons */
+    .cta-button {
+      background: linear-gradient(120deg, var(--primary), var(--accent-purple));
+      border: none;
+      color: #050810;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 45px rgba(0, 212, 255, 0.55);
+    }
+
+    .secondary-button {
+      border: 1px solid rgba(0, 212, 255, 0.35);
+      color: var(--primary);
+      background: rgba(0, 212, 255, 0.03);
+      padding: 12px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .secondary-button:hover {
+      background: rgba(0, 212, 255, 0.12);
+      border-color: rgba(0, 212, 255, 0.65);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
+      transform: translateY(-3px);
+    }
+
+    .accent-section {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.04), rgba(178, 78, 255, 0.03));
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      border-radius: 20px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--primary), var(--accent-purple));
+      border-radius: 4px;
+    }
+
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .serif { font-family: 'Merriweather', serif; }
+
+    /* Code Snippet Box */
+    .terminal-box {
+      background: #090e1c;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .terminal-header {
+      background: #111a30;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    }
+    .terminal-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="h-full">
+  <div class="app-root" id="appRoot">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="mainNav">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#" class="nav-logo flex items-center gap-2 group">
+          <span>AK</span>
+          <span class="text-xs px-2 py-0.5 rounded border border-cyan-500/40 text-cyan-300 mono opacity-80 group-hover:border-cyan-400">VIT</span>
+          <span class="easter-egg text-base ml-1" title="Security & Logic">⚡</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#about" class="text-slate-300 hover:text-cyan-400 transition-colors">About</a>
+          <a href="#journey" class="text-slate-300 hover:text-cyan-400 transition-colors">Journey</a>
+          <a href="#skills" class="text-slate-300 hover:text-cyan-400 transition-colors">Skills</a>
+          <a href="#projects" class="text-slate-300 hover:text-cyan-400 transition-colors">Projects</a>
+          <a href="#interests" class="text-slate-300 hover:text-cyan-400 transition-colors">Interests</a>
+          <a href="#contact" class="text-slate-300 hover:text-cyan-400 transition-colors">Contact</a>
+          <a href="https://github.com/cypher07-ai" target="_blank" rel="noopener noreferrer" 
+             class="flex items-center gap-2 text-xs py-1.5 px-3 rounded-md bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-900/40 transition-all">
+            <i data-lucide="github" class="w-4 h-4"></i> GitHub
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-cyan-400 focus:outline-none" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobileMenu" class="hidden md:hidden px-6 pt-2 pb-6 bg-[#070b16]/95 border-b border-cyan-500/20 backdrop-blur-xl">
+        <div class="flex flex-col gap-4 text-base font-medium">
+          <a href="#about" class="mobile-nav-link text-slate-300 hover:text-cyan-400">About</a>
+          <a href="#journey" class="mobile-nav-link text-slate-300 hover:text-cyan-400">Journey</a>
+          <a href="#skills" class="mobile-nav-link text-slate-300 hover:text-cyan-400">Skills</a>
+          <a href="#projects" class="mobile-nav-link text-slate-300 hover:text-cyan-400">Projects</a>
+          <a href="#interests" class="mobile-nav-link text-slate-300 hover:text-cyan-400">Interests</a>
+          <a href="#contact" class="mobile-nav-link text-slate-300 hover:text-cyan-400">Contact</a>
+          <a href="https://github.com/cypher07-ai" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-cyan-400 pt-2 border-t border-cyan-500/20">
+            <i data-lucide="github" class="w-4 h-4"></i> GitHub Profile
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-mesh relative flex items-center justify-center text-center px-6 pt-36 pb-24 min-h-[95vh]">
+      <div class="absolute inset-0 opacity-25 pointer-events-none" style="background: radial-gradient(circle at 50% 40%, rgba(0, 212, 255, 0.15) 0%, transparent 65%);"></div>
+      
+      <div class="fade-section relative z-10 max-w-4xl mx-auto">
+        <!-- Profile Avatar Badge -->
+        <div class="profile-circle mx-auto mb-10 float-animation" id="profileCircle" title="Ayan Kaushik">
+          AK
+        </div>
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs tracking-wider uppercase mb-5 mono">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+          Student &amp; Software Developer · VIT Vellore
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight mb-6 glow-text">
+          Ayan Kaushik
+        </h1>
+
+        <p class="mono text-sm sm:text-base md:text-lg mb-6 tracking-widest uppercase text-cyan-400 font-semibold" style="letter-spacing: 3px;">
+          Python · C++ · Systems Programming · AI &amp; Security
+        </p>
+
+        <p class="serif text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed mb-10 text-slate-300">
+          "Passionate about building robust system utilities, safe command-line architectures, and intelligent software from first principles."
+          <span class="easter-egg ml-1" title="Code with Purpose">🚀</span>
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#projects" class="cta-button">
+            <i data-lucide="folder-code" class="w-5 h-5"></i> View Featured Projects
+          </a>
+          <a href="#contact" class="secondary-button">
+            <i data-lucide="mail" class="w-5 h-5"></i> Get in Touch
+          </a>
+          <a href="https://github.com/cypher07-ai" target="_blank" rel="noopener noreferrer" class="secondary-button">
+            <i data-lucide="github" class="w-5 h-5"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Wave Divider -->
+    <div class="wave-divider"></div>
+
+    <!-- About Section -->
+    <section id="about" class="max-w-5xl mx-auto px-6 py-24 fade-section">
+      <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="user" class="w-7 h-7 text-cyan-400"></i>
+        <h2 class="text-4xl md:text-5xl font-extrabold glow-text">About Me</h2>
+      </div>
+      <div class="w-24 h-1 rounded mb-12" style="background: linear-gradient(90deg, var(--primary), var(--accent-purple));"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2 premium-card p-8 md:p-10 space-y-5">
+          <p class="serif text-lg leading-relaxed text-slate-300">
+            Hello! I'm <strong class="text-white font-semibold">Ayan Kaushik</strong>, an engineering student at <strong class="text-cyan-300 font-semibold">Vellore Institute of Technology (VIT Vellore)</strong>. My passion lies in low-level systems engineering, algorithmic problem solving with <strong class="text-cyan-300">C++</strong>, and building scalable software and AI solutions with <strong class="text-cyan-300">Python</strong>.
+          </p>
+          <p class="serif text-lg leading-relaxed text-slate-300">
+            I love dissecting how software interacts with operating system primitives, kernels, and developer workflows. This curiosity directly inspired projects like <strong class="text-cyan-300">BashGuard</strong> (a proactive shell safety shield for developers) and <strong class="text-cyan-300">Refocus AI</strong> (an intelligent productivity enhancer).
+          </p>
+          <p class="serif text-lg leading-relaxed text-slate-300">
+            Whether I'm writing memory-efficient C++, architecting modular Python pipelines, or exploring developer tooling, I focus on crafting code that is fast, resilient, and solves real human challenges.
+          </p>
+
+          <div class="pt-4 border-t border-cyan-500/10 flex flex-wrap gap-4 items-center justify-between text-sm">
+            <div class="flex items-center gap-2 text-cyan-300">
+              <i data-lucide="map-pin" class="w-4 h-4"></i> VIT Vellore, Tamil Nadu, India
+            </div>
+            <div class="flex items-center gap-2 text-amber-300">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> Open to Collaborations &amp; Opportunities
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Bio Card -->
+        <div class="premium-card p-8 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold mb-4 text-cyan-300 flex items-center gap-2">
+              <i data-lucide="terminal" class="w-5 h-5"></i> Fast Facts
+            </h3>
+            <ul class="space-y-4 text-sm text-slate-300">
+              <li class="flex items-start gap-3">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <span class="text-white font-medium block">Institution</span>
+                  VIT Vellore
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="code-2" class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <span class="text-white font-medium block">Primary Languages</span>
+                  Python, C++, Bash, C
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <span class="text-white font-medium block">Core Interests</span>
+                  Systems Programming, Shell Security, AI Automation
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="coffee" class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <span class="text-white font-medium block">Work Style</span>
+                  Iterative, Clean Code, First-Principles Thinking
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-cyan-500/15">
+            <a href="#projects" class="text-cyan-400 hover:text-cyan-300 font-medium text-sm flex items-center gap-2 group">
+              Check out my projects <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="max-w-5xl mx-auto px-6 py-24 fade-section">
+      <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="milestone" class="w-7 h-7 text-cyan-400"></i>
+        <h2 class="text-4xl md:text-5xl font-extrabold glow-text">My Journey</h2>
+      </div>
+      <div class="w-24 h-1 rounded mb-12" style="background: linear-gradient(90deg, var(--primary), var(--accent-purple));"></div>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Academic Foundation -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="ml-8 premium-card p-6 md:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="mono text-xs uppercase tracking-wider text-cyan-400 font-semibold">Foundational Education</span>
+              <span class="mono text-xs px-2.5 py-1 rounded bg-cyan-950/70 border border-cyan-500/30 text-cyan-300">Foundation &amp; STEM</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-3 text-white">Higher Secondary &amp; Scientific Curiosity</h3>
+            <p class="leading-relaxed text-slate-300 mb-4">
+              Cultivated deep analytical thinking, advanced mathematics, and computer science fundamentals. Developed an innate interest in algorithmic reasoning and automated problem solving.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Mathematics</span>
+              <span class="skill-tag">Logic &amp; Reasoning</span>
+              <span class="skill-tag">Intro to Programming</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIT Vellore -->
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: linear-gradient(135deg, var(--accent), var(--accent-purple)); box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);"></div>
+          <div class="ml-8 premium-card p-6 md:p-8 border-cyan-500/30">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="mono text-xs uppercase tracking-wider text-amber-300 font-bold">Present Day · Undergraduate</span>
+              <span class="mono text-xs px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300">Undergraduate Degree</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-3 text-white">Vellore Institute of Technology (VIT Vellore)</h3>
+            <p class="leading-relaxed text-slate-300 mb-4">
+              Pursuing B.Tech, diving deeply into Operating Systems, Object-Oriented Programming, Data Structures &amp; Algorithms, Computer Networks, and AI workflows. Actively engineering open-source utilities and system tools.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">C++ Engineering</span>
+              <span class="skill-tag">Python Architecture</span>
+              <span class="skill-tag">Systems Programming</span>
+              <span class="skill-tag">AI Application Development</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Building & Open Source -->
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: linear-gradient(135deg, var(--primary), var(--accent));"></div>
+          <div class="ml-8 premium-card p-6 md:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="mono text-xs uppercase tracking-wider text-cyan-400 font-semibold">Engineering &amp; Creation</span>
+              <span class="mono text-xs px-2.5 py-1 rounded bg-cyan-950/70 border border-cyan-500/30 text-cyan-300">Open Source &amp; Projects</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-3 text-white">Building Real-World Software (Refocus AI &amp; BashGuard)</h3>
+            <p class="leading-relaxed text-slate-300 mb-4">
+              Authored practical open-source tools: designed <strong>BashGuard</strong> to safeguard Linux terminal operators from dangerous executions, and architected <strong>Refocus AI</strong> to combat modern distraction with proactive intelligent assistance.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Refocus AI</span>
+              <span class="skill-tag">BashGuard</span>
+              <span class="skill-tag">Developer Security</span>
+              <span class="skill-tag">AI Productivity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-24 fade-section" style="background: linear-gradient(180deg, rgba(0, 212, 255, 0.02), transparent);">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-3">
+          <i data-lucide="layers" class="w-7 h-7 text-cyan-400"></i>
+          <h2 class="text-4xl md:text-5xl font-extrabold glow-text">Featured Projects</h2>
+        </div>
+        <div class="w-24 h-1 rounded mb-12" style="background: linear-gradient(90deg, var(--primary), var(--accent-purple));"></div>
+
+        <!-- 2 Main Highlight Projects: Refocus AI & BashGuard -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          
+          <!-- PROJECT 1: Refocus AI -->
+          <div class="project-card p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <div class="flex items-center gap-3">
+                  <div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">
+                    <i data-lucide="brain-circuit" class="w-7 h-7"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-extrabold text-white">Refocus AI</h3>
+                    <p class="mono text-xs text-cyan-400">AI Productivity &amp; Focus Engine</p>
+                  </div>
+                </div>
+                <span class="text-xs px-2.5 py-1 rounded bg-cyan-950 border border-cyan-500/30 text-cyan-300 mono font-semibold">Featured</span>
+              </div>
+
+              <p class="leading-relaxed text-slate-300 mb-6">
+                An intelligent focus and context-aware productivity assistant designed to help developers and students maintain deep work. Utilizes machine learning models to identify focus drift, minimize cognitive distraction, and optimize productive sessions.
+              </p>
+
+              <!-- Technical Highlights -->
+              <div class="space-y-2 mb-6 text-sm text-slate-400">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>
+                  <span>Proactive distraction analysis &amp; workflow habit telemetry</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>
+                  <span>Intelligent time-blocking &amp; automated session summaries</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>
+                  <span>Zero-lag local pipeline with streamlined Python architecture</span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span class="skill-tag"><i data-lucide="code" class="w-3.5 h-3.5"></i> Python</span>
+                <span class="skill-tag">PyTorch / AI</span>
+                <span class="skill-tag">FastAPI</span>
+                <span class="skill-tag">NLP</span>
+                <span class="skill-tag">Productivity</span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-cyan-500/20 flex items-center justify-between">
+              <a href="https://github.com/cypher07-ai/refocus" target="_blank" rel="noopener noreferrer" 
+                 class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">
+                <i data-lucide="github" class="w-4 h-4"></i> View on GitHub &rarr;
+              </a>
+              <span class="text-xs mono text-slate-500">Open Source</span>
+            </div>
+          </div>
+
+          <!-- PROJECT 2: BashGuard -->
+          <div class="project-card p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <div class="flex items-center gap-3">
+                  <div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-300">
+                    <i data-lucide="shield-alert" class="w-7 h-7"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-extrabold text-white">BashGuard</h3>
+                    <p class="mono text-xs text-purple-400">Terminal Security &amp; Execution Guard</p>
+                  </div>
+                </div>
+                <span class="text-xs px-2.5 py-1 rounded bg-purple-950 border border-purple-500/30 text-purple-300 mono font-semibold">Security</span>
+              </div>
+
+              <p class="leading-relaxed text-slate-300 mb-6">
+                A lightweight terminal security tool and script analyzer that intercepts commands and shell scripts before execution. Prevents catastrophic disasters like accidental recursive deletions, untrusted pipe-to-bash exploits, and privilege escalation traps.
+              </p>
+
+              <!-- Technical Highlights -->
+              <div class="space-y-2 mb-6 text-sm text-slate-400">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400"></i>
+                  <span>Heuristic static analysis &amp; pattern-based shell parsing</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400"></i>
+                  <span>Pre-execution hook intercepting dangerous CLI commands</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400"></i>
+                  <span>High-performance C++ &amp; POSIX compliance with minimal latency</span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span class="skill-tag"><i data-lucide="cpu" class="w-3.5 h-3.5"></i> C++</span>
+                <span class="skill-tag">Bash / Shell</span>
+                <span class="skill-tag">Linux / POSIX</span>
+                <span class="skill-tag">Security</span>
+                <span class="skill-tag">CLI Tool</span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-purple-500/20 flex items-center justify-between">
+              <a href="https://github.com/cypher07-ai" target="_blank" rel="noopener noreferrer" 
+                 class="inline-flex items-center gap-2 text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors">
+                <i data-lucide="github" class="w-4 h-4"></i> View on GitHub &rarr;
+              </a>
+              <span class="text-xs mono text-slate-500">Security Suite</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Additional Project 1 -->
+          <div class="premium-card p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-3">
+              <i data-lucide="hard-drive" class="w-6 h-6 text-cyan-400"></i>
+              <h3 class="text-xl font-bold text-white">System Resource &amp; Cache Engine</h3>
+            </div>
+            <p class="leading-relaxed text-slate-300 text-sm mb-4">
+              A high-performance C++ in-memory key-value storage engine featuring thread-safe concurrency, LRU eviction policies, and low-latency benchmark diagnostics.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">C++17</span>
+              <span class="skill-tag">Multithreading</span>
+              <span class="skill-tag">Data Structures</span>
+            </div>
+          </div>
+
+          <!-- Additional Project 2 -->
+          <div class="premium-card p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-3">
+              <i data-lucide="terminal-square" class="w-6 h-6 text-amber-400"></i>
+              <h3 class="text-xl font-bold text-white">Automated Dev Environment Orchestrator</h3>
+            </div>
+            <p class="leading-relaxed text-slate-300 text-sm mb-4">
+              Comprehensive shell and Python automation scripts configuring isolated development workspaces, dependency isolation, and continuous health verification.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Bash</span>
+              <span class="skill-tag">DevOps Automation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="max-w-5xl mx-auto px-6 py-24 fade-section">
+      <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="code-2" class="w-7 h-7 text-cyan-400"></i>
+        <h2 class="text-4xl md:text-5xl font-extrabold glow-text">Skills &amp; Expertise</h2>
+      </div>
+      <div class="w-24 h-1 rounded mb-12" style="background: linear-gradient(90deg, var(--primary), var(--accent-purple));"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Programming Languages -->
+        <div class="premium-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5">
+              <i data-lucide="code" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold mb-4 text-white">Programming</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">Bash / Shell</span>
+              <span class="skill-tag">SQL</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-6 pt-4 border-t border-cyan-500/15">
+            Clean, object-oriented, memory-conscious code.
+          </p>
+        </div>
+
+        <!-- AI & Machine Learning -->
+        <div class="premium-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-5">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold mb-4 text-white">AI &amp; Data</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">NumPy</span>
+              <span class="skill-tag">Prompt Eng.</span>
+              <span class="skill-tag">LLM Tools</span>
+              <span class="skill-tag">FastAPI</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-6 pt-4 border-t border-cyan-500/15">
+            Practical AI integration &amp; intelligent workflow automation.
+          </p>
+        </div>
+
+        <!-- Systems & Tools -->
+        <div class="premium-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5">
+              <i data-lucide="terminal" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold mb-4 text-white">Systems &amp; Tools</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Linux / Unix</span>
+              <span class="skill-tag">Git &amp; GitHub</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">VS Code</span>
+              <span class="skill-tag">GDB / GCC</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-6 pt-4 border-t border-cyan-500/15">
+            POSIX commands, script defense &amp; developer toolchains.
+          </p>
+        </div>
+
+        <!-- Core Strengths -->
+        <div class="premium-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-5">
+              <i data-lucide="zap" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold mb-4 text-white">Core Strengths</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Algorithms &amp; DS</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">System Security</span>
+              <span class="skill-tag">Team Collaboration</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-6 pt-4 border-t border-cyan-500/15">
+            First-principles reasoning &amp; structured debugging.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Areas of Interest -->
+    <section id="interests" class="py-24 fade-section accent-section mx-4 md:mx-12">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-3">
+          <i data-lucide="compass" class="w-7 h-7 text-cyan-400"></i>
+          <h2 class="text-4xl md:text-5xl font-extrabold glow-text">Areas of Interest</h2>
+          <span class="easter-egg text-2xl" title="Always exploring frontiers">🧭</span>
+        </div>
+        <div class="w-24 h-1 rounded mb-12" style="background: linear-gradient(90deg, var(--primary), var(--accent-purple));"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="premium-card p-8">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="p-3 rounded-lg bg-cyan-500/10 text-cyan-400">
+                <i data-lucide="cpu" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Systems Programming &amp; Low-Level Software</h3>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Fascinated by memory models, processor architectures, process isolation, and operating system mechanics. Exploring how code translates directly to machine execution.
+            </p>
+          </div>
+
+          <div class="premium-card p-8">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="p-3 rounded-lg bg-purple-500/10 text-purple-400">
+                <i data-lucide="shield" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Defensive Shell &amp; Software Security</h3>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Investigating threat vectors in CLI utilities, dangerous execution sequences, access boundaries, and building runtime shields that safeguard environments from malicious or accidental damage.
+            </p>
+          </div>
+
+          <div class="premium-card p-8">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="p-3 rounded-lg bg-amber-500/10 text-amber-400">
+                <i data-lucide="brain" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Generative AI &amp; Developer Productivity</h3>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Building pragmatic AI assistants that operate quietly in the background, minimizing human friction, streamlining code workflows, and amplifying cognitive output.
+            </p>
+          </div>
+
+          <div class="premium-card p-8">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="p-3 rounded-lg bg-cyan-500/10 text-cyan-400">
+                <i data-lucide="binary" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">High-Performance Computing &amp; C++</h3>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Writing optimized C++ pipelines using modern standards, cache friendliness, zero-cost abstractions, and concurrent multithreading patterns.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coding Profiles Section -->
+    <section class="max-w-5xl mx-auto px-6 py-24 fade-section">
+      <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="terminal" class="w-7 h-7 text-cyan-400"></i>
+        <h2 class="text-4xl md:text-5xl font-extrabold glow-text">Coding Profiles &amp; Links</h2>
+      </div>
+      <div class="w-24 h-1 rounded mb-12" style="background: linear-gradient(90deg, var(--primary), var(--accent-purple));"></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- GitHub -->
+        <a href="https://github.com/cypher07-ai" target="_blank" rel="noopener noreferrer" 
+           class="premium-card p-8 hover:scale-[1.03] transition-transform group flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <i data-lucide="github" class="w-7 h-7"></i>
+              </div>
+              <i data-lucide="external-link" class="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-1">GitHub</h3>
+            <p class="mono text-sm text-cyan-400">@cypher07-ai</p>
+          </div>
+          <p class="text-xs text-slate-400 mt-4 pt-3 border-t border-cyan-500/15">
+            Repositories for Refocus, BashGuard, and system utilities.
+          </p>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
+           class="premium-card p-8 hover:scale-[1.03] transition-transform group flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                <i data-lucide="linkedin" class="w-7 h-7"></i>
+              </div>
+              <i data-lucide="external-link" class="w-4 h-4 text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-1">LinkedIn</h3>
+            <p class="mono text-sm text-blue-400">Ayan Kaushik</p>
+          </div>
+          <p class="text-xs text-slate-400 mt-4 pt-3 border-t border-cyan-500/15">
+            Professional network, academic journey &amp; technical updates.
+          </p>
+        </a>
+
+        <!-- LeetCode / Competitive Programming -->
+        <div class="premium-card p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                <i data-lucide="trophy" class="w-7 h-7"></i>
+              </div>
+              <span class="text-xs mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30">C++</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-1">Problem Solving</h3>
+            <p class="mono text-sm text-amber-400">DSA &amp; Competitive Code</p>
+          </div>
+          <p class="text-xs text-slate-400 mt-4 pt-3 border-t border-cyan-500/15">
+            Practicing optimal algorithmic solutions, trees, graphs, and dynamic programming.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Terminal Preview Easter Egg -->
+    <section class="max-w-5xl mx-auto px-6 pb-12 fade-section">
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="terminal-circle bg-red-500/80"></div>
+          <div class="terminal-circle bg-yellow-500/80"></div>
+          <div class="terminal-circle bg-green-500/80"></div>
+          <span class="mono text-xs text-slate-400 ml-2">ayan@vit-vellore: ~/projects/bashguard</span>
+        </div>
+        <div class="p-6 mono text-xs sm:text-sm text-slate-300 space-y-2">
+          <p class="text-cyan-400">$ ./bashguard --check "rm -rf / --no-preserve-root"</p>
+          <p class="text-red-400 font-bold">[CRITICAL INTERCEPT] Rule #001: Root recursive destructive wipe blocked.</p>
+          <p class="text-slate-400">[BashGuard] Status: Neutralized. Developer system protected.</p>
+          <p class="text-cyan-400 pt-2">$ python -m refocus_ai --status</p>
+          <p class="text-emerald-400 font-bold">[Refocus AI] Deep work state active. Distractions: 0 | Focus Score: 98%</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="max-w-5xl mx-auto px-6 py-24 fade-section">
+      <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="send" class="w-7 h-7 text-cyan-400"></i>
+        <h2 class="text-4xl md:text-5xl font-extrabold glow-text">Contact &amp; Connect</h2>
+        <span class="easter-egg text-2xl" title="Let's build something epic!">🤝</span>
+      </div>
+      <div class="w-24 h-1 rounded mb-12" style="background: linear-gradient(90deg, var(--primary), var(--accent-purple));"></div>
+
+      <div class="premium-card p-8 md:p-12 mb-10">
+        <p class="serif text-lg leading-relaxed text-slate-300 mb-8">
+          Thank you for exploring my portfolio! Whether you'd like to collaborate on open-source projects, discuss systems programming or AI concepts, or explore engineering opportunities at VIT Vellore, I'd love to connect with you.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Email Card -->
+          <div class="p-5 rounded-xl bg-cyan-950/40 border border-cyan-500/20 flex items-start gap-4">
+            <div class="p-3 rounded-lg bg-cyan-500/10 text-cyan-400 shrink-0">
+              <i data-lucide="mail" class="w-6 h-6"></i>
+            </div>
+            <div class="overflow-hidden">
+              <p class="mono text-xs text-slate-400 uppercase tracking-wider mb-1">Email</p>
+              <a href="mailto:ayanrunning99@gmail.com" class="text-white hover:text-cyan-300 font-semibold break-all text-base block transition-colors">
+                ayanrunning99@gmail.com
+              </a>
+              <button onclick="copyEmail(this)" class="mt-2 text-xs text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1.5 mono">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy email
+              </button>
+            </div>
+          </div>
+
+          <!-- Academic Location -->
+          <div class="p-5 rounded-xl bg-purple-950/40 border border-purple-500/20 flex items-start gap-4">
+            <div class="p-3 rounded-lg bg-purple-500/10 text-purple-400 shrink-0">
+              <i data-lucide="map-pin" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <p class="mono text-xs text-slate-400 uppercase tracking-wider mb-1">Campus</p>
+              <p class="text-white font-semibold text-base">Vellore Institute of Technology</p>
+              <p class="text-xs text-slate-400 mt-1">Vellore, Tamil Nadu, India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Closing Callout -->
+      <div class="premium-card p-10 text-center">
+        <p class="text-3xl md:text-4xl font-extrabold mb-4 text-white">Let's build something meaningful.</p>
+        <p class="serif text-slate-300 text-lg max-w-2xl mx-auto mb-6">
+          Always eager to learn new technologies, explore challenging ideas, and build systems that make a tangible difference.
+        </p>
+        <a href="mailto:ayanrunning99@gmail.com" class="cta-button inline-flex">
+          <i data-lucide="mail-plus" class="w-5 h-5"></i> Send a Message
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t py-12 px-6 text-center border-cyan-500/10">
+      <div class="flex items-center justify-center gap-3 text-sm mb-3 text-slate-400">
+        <span>&copy; 2025 Ayan Kaushik</span>
+        <span class="text-cyan-500">·</span>
+        <span>VIT Vellore</span>
+        <span class="easter-egg" title="Built with code and curiosity">⚡</span>
+      </div>
+      <p class="mono text-xs text-slate-500">
+        Crafted with precision, Python &amp; C++ passion | Designed with Tailwind &amp; Space Grotesk
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript for Interactions -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Intersection Observer for Scroll Fade-In
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+
+    // Mobile Navigation Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Dynamic Navigation Bar Styling on Scroll
+    const mainNav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        mainNav.classList.add('shadow-lg', 'shadow-cyan-950/20');
+        mainNav.style.background = 'rgba(5, 8, 16, 0.92)';
+      } else {
+        mainNav.classList.remove('shadow-lg', 'shadow-cyan-950/20');
+        mainNav.style.background = 'rgba(5, 8, 16, 0.78)';
+      }
+    });
+
+    // Copy Email to Clipboard helper
+    function copyEmail(button) {
+      const email = 'ayanrunning99@gmail.com';
+      navigator.clipboard.writeText(email).then(() => {
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> <span class="text-emerald-400">Copied!</span>';
+        lucide.createIcons();
+        setTimeout(() => {
+          button.innerHTML = originalText;
+          lucide.createIcons();
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
